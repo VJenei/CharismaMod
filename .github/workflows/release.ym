@@ -1,0 +1,37 @@
+name: Release Source Dump
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  release-source:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Generate Combined Source Text
+      run: |
+        VERSION="${{ github.ref_name }}"
+        OUTPUT="CharismaMod_Source_${VERSION}.txt"
+        
+        echo "Source Code Dump for $VERSION" > $OUTPUT
+        echo "----------------------------------------" >> $OUTPUT
+        
+        find . -name "*.cs" -not -path "*/obj/*" -not -path "*/bin/*" | sort | while read file; do
+          echo "" >> $OUTPUT
+          echo "### FILE: $file ###" >> $OUTPUT
+          cat "$file" >> $OUTPUT
+        done
+
+    - name: Create Release with File
+      uses: softprops/action-gh-release@v1
+      with:
+        files: CharismaMod_Source_${{ github.ref_name }}.txt
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
