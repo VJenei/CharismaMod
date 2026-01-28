@@ -1,3 +1,5 @@
+Set-Location $PSScriptRoot
+
 # 1. Read the version from build.txt
 $content = Get-Content "build.txt"
 # Regex to find "version = 0.x.x"

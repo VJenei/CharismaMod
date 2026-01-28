@@ -15,23 +15,40 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
+    - name: Install Tree
+      run: sudo apt-get install -y tree
+
     - name: Generate Combined Source Text
       run: |
         VERSION="${{ github.ref_name }}"
-        
         OUTPUT="CharismaMod_Source_${VERSION}.txt"
         
         echo "Generating source dump for version: $VERSION"
         
         echo "Source Code Dump for $VERSION - Generated on $(date)" > $OUTPUT
         echo "----------------------------------------" >> $OUTPUT
+        echo "DIRECTORY STRUCTURE:" >> $OUTPUT
+        echo "----------------------------------------" >> $OUTPUT
         
-        find . -name "*.cs" -not -path "*/obj/*" -not -path "*/bin/*" | sort | while read file; do
+        tree -a -I '.git|bin|obj' >> $OUTPUT
+        
+        echo "" >> $OUTPUT
+        echo "----------------------------------------" >> $OUTPUT
+        echo "FILE CONTENTS:" >> $OUTPUT
+        echo "----------------------------------------" >> $OUTPUT
+        
+        find . -type f -not -path '*/.git/*' -not -path '*/bin/*' -not -path '*/obj/*' -not -name "$OUTPUT" | sort | while read file; do
           echo "" >> $OUTPUT
           echo "################################################################" >> $OUTPUT
           echo "START OF FILE: $file" >> $OUTPUT
           echo "################################################################" >> $OUTPUT
-          cat "$file" >> $OUTPUT
+          
+          if grep -qI "." "$file"; then
+            cat "$file" >> $OUTPUT
+          else
+             echo "[BINARY FILE - CONTENT SKIPPED]" >> $OUTPUT
+          fi
+
           echo "" >> $OUTPUT
           echo "END OF FILE: $file" >> $OUTPUT
           echo "" >> $OUTPUT
