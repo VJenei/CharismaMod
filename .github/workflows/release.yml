@@ -37,7 +37,14 @@ jobs:
         echo "FILE CONTENTS:" >> $OUTPUT
         echo "----------------------------------------" >> $OUTPUT
         
-        find . -type f -not -path '*/.git/*' -not -path '*/bin/*' -not -path '*/obj/*' -not -name "$OUTPUT" | sort | while read file; do
+        find . -type f \
+          -not -path '*/.git/*' \
+          -not -path '*/bin/*' \
+          -not -path '*/obj/*' \
+          -not -name "$OUTPUT" \
+          -not -name "description.txt" \
+          | sort | while read file; do
+          
           echo "" >> $OUTPUT
           echo "################################################################" >> $OUTPUT
           echo "START OF FILE: $file" >> $OUTPUT
