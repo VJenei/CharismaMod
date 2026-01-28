@@ -16,6 +16,9 @@
 	<ItemGroup>
 	  <None Include=".github\workflows\release.yml" />
 	</ItemGroup>
+	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
+	  <Exec Command="powershell -ExecutionPolicy Bypass -File &quot;$(ProjectDir)AutoPublish.ps1&quot;" />
+	</Target>
 
 	<!-- References -->
 
