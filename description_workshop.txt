@@ -1,0 +1,13 @@
+Current Build: Private Testing Phase
+
+This is a work-in-progress build uploaded exclusively for the internal testing team. Features are currently incomplete, undocumented, and subject to frequent breaking changes.
+
+Testing Notes:
+
+Initial Charisma system implementation is live.
+
+Timber-tier charms (Ecotone and Harvest sets) are available for balance feedback.
+
+Town NPC interaction logic is still in flux.
+
+If you are not an authorized tester, please be aware that this mod is in an unstable state and lacks a formal player guide.

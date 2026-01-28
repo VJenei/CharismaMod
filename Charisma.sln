@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 18
+VisualStudioVersion = 18.2.11415.280 d18.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Charisma", "Charisma.csproj", "{41B74E54-CC8C-1B66-FC89-2A3D579A3AAA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{41B74E54-CC8C-1B66-FC89-2A3D579A3AAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41B74E54-CC8C-1B66-FC89-2A3D579A3AAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41B74E54-CC8C-1B66-FC89-2A3D579A3AAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41B74E54-CC8C-1B66-FC89-2A3D579A3AAA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C98D69CC-6F1F-40EB-8ECD-7DCA75CBF5D9}
+	EndGlobalSection
+EndGlobal

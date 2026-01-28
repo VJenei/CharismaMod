@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<!-- Import tModLoader mod properties -->
+	<Import Project="..\tModLoader.targets" />
+
+	<!-- General -->
+	<PropertyGroup>
+		
+	</PropertyGroup>
+	<ItemGroup>
+	  <Folder Include="Assets\Textures\UI\" />
+	  <Folder Include="Content\Items\Charms\Timber\Hardmode\" />
+	  <Folder Include="Content\Items\Charms\Timber\PreHardmode\Rot\" />
+	</ItemGroup>
+
+	<!-- References -->
+
+</Project>

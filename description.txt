@@ -1,0 +1,118 @@
+Current Build: Private Testing Phase
+
+This is a work-in-progress build uploaded exclusively for the internal testing team. Features are currently incomplete, undocumented, and subject to frequent breaking changes.
+
+Testing Notes:
+
+Initial Charisma system implementation is live.
+
+Timber-tier charms (Ecotone and Harvest sets) are available for balance feedback.
+
+Town NPC interaction logic is still in flux.
+
+If you are not an authorized tester, please be aware that this mod is in an unstable state and lacks a formal player guide.
+
+
+
+Changelog:
+0.2:
+
+
+SYSTEMS AND ARCHITECTURE
+
+Refactored Charisma.cs with internal packet constants (Packet_UnlockCharm, Packet_SyncPlayer) for more robust multiplayer handling.
+Enhanced CharismaWorldSystem.cs with a comprehensive network handling layer to manage charisma unlocks across Multiplayer Client, Server, and SinglePlayer modes.
+Implemented a network-safe sound trigger system that prevents server-side audio errors during charisma unlocks.
+Integrated Reflection in KeybindSystem.cs and CharismaOverlay.cs to force ConfigManager.Save, ensuring configuration changes persist to disk immediately.
+Added World Data synchronization via NetMessage.SendData to ensure all clients receive updated WorldCharismaCount and FoundCharms lists.
+
+
+USER INTERFACE
+
+Optimized CharismaOverlay.cs with string caching logic to reduce Garbage Collection pressure during frame updates.
+Added IsHidden overrides to custom accessory slots (CharmSlot1, CharmSlot2, CharmSlot3) to support dynamic UI visibility.
+Implemented real-time coordinate synchronization in the overlay to reflect external changes made through the settings menu.
+
+
+PLAYER MECHANICS
+
+Added KeybindSystem.cs featuring two new registered hotkeys: Toggle Charisma Overlay (L) and Cycle Charm Slots (K).
+Implemented KeybindPlayer.cs to process hotkey triggers, allowing players to flip overlay visibility or cycle through charm slot display modes (Hidden vs. Showing 1-3).
+Introduced VisualCharmSlotLimit to CharismaPlayer.cs to track per-player preferences for UI slot visibility.
+Enhanced player data persistence to include saving and loading of the VisualCharmSlotLimit variable.
+Added Multiplayer synchronization for the Charm Slot Unlocker to ensure slot counts remain consistent across servers.
+
+
+NPC AND WORLD INTERACTION
+
+Optimized DebuffGlobalNPC.cs by caching SplintersBuffID during SetStaticDefaults to improve performance.
+
+
+ITEMS AND ACCESSORIES
+
+Redesigned BaseCharm.cs to function as a usable item; charms can now be manually "consumed" to permanently unlock their charisma reward even if they aren't equipped.
+Updated CharismaGlobalItem.cs with OnCreated and OnPickup hooks to ensure charms are registered in the world system via crafting or collection.
+Implemented the Verdant charm set: Mahogany Charm, Bamboo Charm, Glowing Mushroom Charm, and the combined Verdant Totem.
+Mahogany Charm: Grants +1.0 jump speed boost, a 22% increase to grapple hook velocity, and applies Poisoned debuff to targets.
+Bamboo Charm: Increases maximum life by 10 and increases block placement range by 1.
+Glowing Mushroom Charm: Reduces potion and restoration sickness duration by 11% and provides a blue light aura.
+Verdant Totem: Combines all Verdant set effects, including Poison application and increased hook speed.
+
+
+VISUALS AND COMBAT
+
+Added MahoganyHookGlobalProjectile.cs to dynamically scale grappling hook speed for players wearing the Mahogany Charm or Verdant Totem.
+
+
+
+0.1:
+
+SYSTEMS AND ARCHITECTURE
+
+Created Charisma.cs to handle mod-wide logic and packet distribution for player syncing.
+Implemented CharismaWorldSystem.cs to track global mod progress, including FoundCharms and WorldCharismaCount.
+Added World Data persistence using TagCompound to save and load WorldCharismaCount and the list of discovered charms.
+Set up network synchronization for world data via NetSend and NetReceive to maintain server-client parity.
+Established CharismaConfig.cs for client-side settings, allowing users to toggle the UI overlay and set its screen position.
+
+
+USER INTERFACE
+
+Developed CharismaOverlay.cs to provide a visual indicator of World Charisma.
+Added click-and-drag functionality to the UI overlay with automatic coordinate saving to the mod config.
+Created CharismaUISystem.cs to inject the mod UI into the "Vanilla: Resource Bars" layer.
+Restricted the Charisma UI to only appear while the player's inventory is open.
+Implemented three custom accessory slots (CharmSlot1, CharmSlot2, CharmSlot3) that are conditionally enabled based on player progress.
+
+
+PLAYER MECHANICS
+
+Defined CharismaPlayer.cs to manage custom player variables: UnlockedCharmSlots and luckBonusAccumulator.
+Implemented persistent player data saving and loading for unlocked slots.
+Added scaling movement speed and running speed bonuses that activate when more than 2 Town NPCs are present.
+Integrated a dynamic luck system in ModifyLuck that scales based on World Charisma and specific biome conditions.
+
+
+NPC AND WORLD INTERACTION
+
+Created the Salesman Town NPC with a spawn condition requiring at least 1 World Charisma.
+Implemented HappinessGlobalNPC.cs to set unique relationship levels for the Salesman across all vanilla NPCs.
+Programmed a global shop discount system in ShopGlobalNPC.cs that scales with World Charisma, capped at 50%.
+Added the SplintersDebuff.cs which grants 3 points of armor penetration against affected targets.
+
+
+ITEMS AND ACCESSORIES
+
+Created BaseCharm.cs as a foundation for all charm items, including a "First Time Bonus" tooltip system.
+Added CharismaGlobalItem.cs to automatically register charms and grant rewards upon the item entering the inventory.
+Implemented the Ecotone charm set: Wood Charm, Boreal Charm, Palm Charm, and the combined Ecotone Totem.
+Implemented the Harvest charm set: Cactus Charm, Pumpkin Charm, Dynasty Charm, and the combined Harvest Totem.
+Developed the CharmSlotUnlocker.cs consumable to permanently increase the player's maximum charm slots.
+
+
+VISUALS AND COMBAT
+
+Added PumpkinPieceVisual as a custom projectile for decorative combat effects.
+Programmed custom physics for visual projectiles, including gravity, air resistance, and tile collision.
+Created unique thorns damage calculations for the Cactus Charm based on the player's defense stat.
+Integrated "Shimmer" transformations between the Cactus and Pumpkin charms.

@@ -1,0 +1,185 @@
+Mods: {
+	Charisma: {
+		Items: {
+			WoodCharm: {
+				DisplayName: Wood Charm
+				Tooltip:
+					'''
+					2 defense
+					Enemies that touch you receive Splinters, slightly reducing their defense
+					'''
+			}
+
+			BorealCharm: {
+				DisplayName: Boreal Charm
+				Tooltip:
+					'''
+					+3% increased critical strike chance
+					Hits have a chance to inflict Frostburn
+					'''
+			}
+
+			PalmCharm: {
+				DisplayName: Palm Charm
+				Tooltip:
+					'''
+					5% increased movement speed
+					Increases fishing power by 5
+					'''
+			}
+
+			EcotoneTotem: {
+				DisplayName: Ecotone Totem
+				Tooltip:
+					'''
+					2 defense
+					3% increased critical strike chance
+					5% increased movement speed
+					Increases fishing power by 5
+					Hits have a chance to inflict Frostburn
+					Enemies that touch you receive Splinters
+					'''
+			}
+
+			CactusCharm: {
+				DisplayName: Cactus Charm
+				Tooltip:
+					'''
+					2 defense
+					Cactus spines prick your attackers, growing more lethal as your defense increases
+					'''
+			}
+
+			PumpkinCharm: {
+				DisplayName: Pumpkin Charm
+				Tooltip:
+					'''
+					2 defense
+					The weight of the harvest increases your damage, growing more lethal as your defense increases
+					'''
+			}
+
+			DynastyCharm: {
+				DisplayName: Dynasty Charm
+				Tooltip:
+					'''
+					3% increased damage
+					3% increased critical strike chance
+					5% increased weapon speed
+					Slightly lowered defense
+					'''
+			}
+
+			HarvestTotem: {
+				DisplayName: Harvest Totem
+				Tooltip:
+					'''
+					2 defense
+					3% increased damage
+					3% increased critical strike chance
+					5% increased weapon speed
+					Cactus spines prick your attackers, growing more lethal as your defense increases
+					The weight of the harvest increases your damage, growing more lethal as your defense increases
+					'''
+			}
+
+			CharmSlotUnlocker: {
+				DisplayName: Charismatic Gem
+				Tooltip: Permanently unlocks an extra Charm Slot
+			}
+
+			MahoganyCharm: {
+				DisplayName: Mahogany Charm
+				Tooltip:
+					'''
+					Increases jump speed and hook velocity
+					Hits have a chance to poison enemies
+					'''
+			}
+
+			BambooCharm: {
+				DisplayName: Bamboo Charm
+				Tooltip:
+					'''
+					Increases maximum life by 10
+					Increases block placement range by 1
+					'''
+			}
+
+			GlowingMushroomCharm: {
+				DisplayName: Glowing Mushroom Charm
+				Tooltip:
+					'''
+					Reduces potion and restoration delay by 11%
+					Provides a small amount of light
+					'''
+			}
+
+			VerdantTotem: {
+				DisplayName: Verdant Totem
+				Tooltip:
+					'''
+					Increases jump speed and hook velocity
+					Increases block placement range by 1
+					Increases maximum life by 10
+					Reduces potion delay
+					Hits have a chance to poison enemies
+					Provides a small amount of light
+					'''
+			}
+		}
+
+		NPCs: {
+			Salesman: {
+				DisplayName: Salesman
+				Dialogue.Standard: I've traveled across the lands collecting these wooden trinkets. Care to buy one?
+
+				TownNPCMood: {
+					Content: I am content.
+					NoHome: I hate not having a home.
+					FarFromHome: I am too far from home.
+					LoveSpace: I love having so much space.
+					DislikeCrowded: I dislike how crowded I am.
+					HateCrowded: I hate how crowded I am.
+					LikeNPC_Princess: I like {NPCName}.
+					Princess_LovesNPC: I like {NPCName}.
+				}
+
+				Census.SpawnCondition: Conditions unknown
+			}
+		}
+
+		Buffs: {
+			SplintersDebuff: {
+				DisplayName: Splinters!
+				Description: Armor penetration is increased against this target
+			}
+		}
+
+		Conditions.CraftedWood: Unlocked once crafted
+
+		Configs: {
+			CharismaConfig: {
+				DisplayName: Charisma Settings
+				Headers.UserInterface: Interface Settings
+
+				ShowCharismaOverlay: {
+					Label: Show Charisma Overlay
+					Tooltip: If true, the Charisma counter will be visible in your inventory.
+				}
+
+				OverlayPosition: {
+					Label: Overlay Position
+					Tooltip: The position of the Charisma counter on screen.
+				}
+			}
+		}
+
+		Projectiles.PumpkinPieceVisual.DisplayName: Pumpkin Piece Visual
+
+		Keybinds: {
+			"Cycle Charm Slots.DisplayName": Cycle  Charm  Slots
+			"Toggle Charisma Overlay.DisplayName": Toggle  Charisma  Overlay
+		}
+	}
+}

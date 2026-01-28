@@ -1,0 +1,17 @@
+﻿using Terraria;
+using Terraria.ModLoader;
+using Terraria.ID;
+
+namespace Charisma.Content.Buffs
+{
+    public class SplintersDebuff : ModBuff
+    {
+        public override void SetStaticDefaults()
+        {
+            Main.debuff[Type] = true;
+            Main.pvpBuff[Type] = true;
+            Main.buffNoSave[Type] = true;
+            BuffID.Sets.LongerExpertDebuff[Type] = true;
+        }
+    }
+}

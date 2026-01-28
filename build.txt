@@ -1,0 +1,3 @@
+displayName = Charisma
+author = Vincent Jenei
+version = 0.2
