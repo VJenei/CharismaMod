@@ -6,7 +6,7 @@ using Terraria.ID;
 using Terraria.ModLoader.Config;
 using Charisma.Common.Configs;
 using Charisma.Common.Players;
-using System.Reflection; // Required for the fix
+using System.Reflection;
 
 namespace Charisma.Common.Systems
 {
@@ -32,25 +32,20 @@ namespace Charisma.Common.Systems
     {
         public override void ProcessTriggers(TriggersSet triggersSet)
         {
-            // 1. Toggle Overlay Logic (Global Config)
             if (KeybindSystem.ToggleOverlayKeybind.JustPressed)
             {
                 var config = ModContent.GetInstance<CharismaConfig>();
 
-                // Flip the value
                 config.ShowCharismaOverlay = !config.ShowCharismaOverlay;
 
-                // FIX: Use Reflection to force the internal 'Save' method to run
                 typeof(ConfigManager)
                     .GetMethod("Save", BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic)
                     ?.Invoke(null, new object[] { config });
 
-                // Feedback
                 if (config.ShowCharismaOverlay) SoundEngine.PlaySound(SoundID.MenuOpen);
                 else SoundEngine.PlaySound(SoundID.MenuClose);
             }
 
-            // 2. Cycle Charm Slots Logic (Per-Player Save)
             if (KeybindSystem.CycleCharmSlotsKeybind.JustPressed)
             {
                 var modPlayer = Player.GetModPlayer<CharismaPlayer>();

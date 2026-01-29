@@ -14,7 +14,7 @@ namespace Charisma.Content.Items.Charms.Timber.PreHardmode.Verdant
         public override void ApplyCharmEffects(Player player)
         {
             player.jumpSpeedBoost += 1.0f;
-            player.GetModPlayer<MahoganyCharmPlayer>().mahoganyCharmEquipped = true; // Enables Poison & Hook Speed
+            player.GetModPlayer<MahoganyCharmPlayer>().mahoganyCharmEquipped = true;
 
             player.statLifeMax2 += 10;
             player.blockRange += 1;
@@ -36,9 +36,9 @@ namespace Charisma.Content.Items.Charms.Timber.PreHardmode.Verdant
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient(ModContent.ItemType<MahoganyCharm>())
-                .AddIngredient(ModContent.ItemType<BambooCharm>())
                 .AddIngredient(ModContent.ItemType<GlowingMushroomCharm>())
+                .AddIngredient(ModContent.ItemType<BambooCharm>())
+                .AddIngredient(ModContent.ItemType<MahoganyCharm>())
                 .AddTile(TileID.TinkerersWorkbench)
                 .Register();
         }

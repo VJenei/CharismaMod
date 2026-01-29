@@ -42,56 +42,38 @@ namespace Charisma.Content.Items.Charms.Timber.PreHardmode.Harvest
                 .Register();
         }
     }
-
     public class PumpkinCharmPlayer : ModPlayer
     {
         public bool pumpkinCharmEquipped;
+
+        public int pumpkinCharges = 0;
+        public int pumpkinTimer = 0;
+        private const int MaxCharges = 7;
+        private const int CooldownTicks = 420;
 
         public override void ResetEffects()
         {
             pumpkinCharmEquipped = false;
         }
 
+        public override void PostUpdate()
+        {
+            if (pumpkinTimer > 0)
+            {
+                pumpkinTimer--;
+
+                if (pumpkinTimer <= 0)
+                {
+                    pumpkinCharges = 0;
+                }
+            }
+        }
+
         public override void ModifyHitNPCWithItem(Item item, NPC target, ref NPC.HitModifiers modifiers)
         {
             if (pumpkinCharmEquipped)
             {
-                if (Main.rand.NextFloat() > 0.22f)
-                {
-
-                    int defense = Player.statDefense;
-                    int initialBase = (int)(defense * 0.50f);
-
-                    int baseDamage = initialBase switch
-                    {
-                        < 7 => 1,
-                        < 22 => (1 + (int)(defense * 0.33f)) / 2,
-                        < 40 => (3 + (int)(defense * 0.22f)) / 2,
-                        _ => (5 + (int)(defense * 0.11f)) / 2
-                    };
-
-                    string calcType = initialBase switch
-                    {
-                        < 7 => "1",
-                        < 22 => "2",
-                        < 40 => "3",
-                        _ => "4"
-                    };
-
-                    int totalDamage = baseDamage + Main.rand.Next(-1, 1);
-
-                    if (Main.rand.NextBool(66))
-                    {
-                        totalDamage *= 2;
-                    }
-
-                    Player.ApplyDamageToNPC(target, totalDamage, 0f, 0, false);
-
-                    if (Main.rand.NextFloat() < 0.8f)
-                    {
-                        SpawnPumpkinVisuals(target);
-                    }
-                }
+                ApplyPumpkinEffect(target, isItem: true);
             }
         }
 
@@ -99,54 +81,68 @@ namespace Charisma.Content.Items.Charms.Timber.PreHardmode.Harvest
         {
             if (pumpkinCharmEquipped)
             {
-                if (Main.rand.NextFloat() > 0.22f)
+                ApplyPumpkinEffect(target, isItem: false);
+            }
+        }
+
+        private void ApplyPumpkinEffect(NPC target, bool isItem)
+        {
+            if (pumpkinCharges >= MaxCharges)
+                return;
+
+            if (Main.rand.NextFloat() > 0.22f)
+            {
+                if (pumpkinCharges == 0)
                 {
-                        
-                    int defense = Player.statDefense;
-                    int initialBase = (int)(defense * 0.50f);
+                    pumpkinTimer = CooldownTicks;
+                }
+                pumpkinCharges++;
 
-                    int baseDamage = initialBase switch
-                    {
-                        < 7 => 1,
-                        < 22 => (1 + (int)(defense * 0.33f)) / 2,
-                        < 40 => (3 + (int)(defense * 0.22f)) / 2,
-                        _ => (5 + (int)(defense * 0.11f)) / 2
-                    };
+                int defense = Player.statDefense;
+                int initialBase = (int)(defense * 0.50f);
 
-                    int totalDamage = baseDamage + Main.rand.Next(-2, 1);
+                int baseDamage = initialBase switch
+                {
+                    < 7 => 1,
+                    < 22 => (1 + (int)(defense * 0.33f)) / 2,
+                    < 40 => (3 + (int)(defense * 0.22f)) / 2,
+                    _ => (5 + (int)(defense * 0.11f)) / 2
+                };
 
-                    if (Main.rand.NextBool(66))
-                    {
-                        totalDamage *= 2;
-                    }
+                int variance = isItem ? Main.rand.Next(-1, 1) : Main.rand.Next(-2, 1);
+                int totalDamage = baseDamage + variance;
 
-                    Player.ApplyDamageToNPC(target, totalDamage, 0f, 0, false);
+                if (Main.rand.NextBool(66))
+                {
+                    totalDamage *= 2;
+                }
 
-                    if (Main.rand.NextFloat() < 0.7f)
-                    {
-                        SpawnPumpkinVisuals(target);
-                    }
+                int finalDamage = totalDamage * 2;
+                Player.ApplyDamageToNPC(target, finalDamage, 0f, 0, false);
+
+                float visualChance = isItem ? 0.7f : 0.3f;
+                if (Main.rand.NextFloat() < visualChance)
+                {
+                    SpawnPumpkinVisuals(target);
                 }
             }
         }
+
         private void SpawnPumpkinVisuals(NPC target)
         {
             Vector2 direction = (target.Center - Player.Center).SafeNormalize(Vector2.UnitX);
 
-            if (Main.rand.NextFloat() > 0.22f)
+            for (int i = 0; i < (1 + Main.rand.Next(2)); i++)
             {
-                for (int i = 0; i < (1 + Main.rand.Next(2)); i++)
-                {
-                    Vector2 velocity = direction.RotatedByRandom(MathHelper.ToRadians(33)) * Main.rand.NextFloat(1f, 3.3f);
+                Vector2 velocity = direction.RotatedByRandom(MathHelper.ToRadians(33)) * Main.rand.NextFloat(1f, 3.3f);
 
-                    int p = Projectile.NewProjectile(
-                        Player.GetSource_FromThis(),
-                        target.Center,
-                        velocity,
-                        ModContent.ProjectileType<PumpkinPieceVisual>(),
-                        0, 0, Player.whoAmI
-                    );
-                }
+                Projectile.NewProjectile(
+                    Player.GetSource_FromThis(),
+                    target.Center,
+                    velocity,
+                    ModContent.ProjectileType<PumpkinPieceVisual>(),
+                    0, 0, Player.whoAmI
+                );
             }
         }
     }

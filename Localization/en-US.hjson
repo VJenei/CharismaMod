@@ -127,6 +127,48 @@ Mods: {
 					Provides a small amount of light
 					'''
 			}
+
+			ShadewoodCharm: {
+				DisplayName: Shadewood Charm
+				Tooltip:
+					'''
+					7% increased acceleration
+					3% increased damage
+					Hits have a chance to steal life, growing more radiant as your defense increases
+					'''
+			}
+
+			RotTotem: {
+				DisplayName: Rot Totem
+				Tooltip:
+					'''
+					Increases weapon and projectile size by 10%
+					Reduces damage taken by 3%
+					7% increased acceleration
+					3% increased damage
+					Increases armor penetration by 3
+					Hits have a chance to steal life
+					Hits have a chance to cause a large fiery explosion
+					'''
+			}
+
+			EbonwoodCharm: {
+				DisplayName: Ebonwood Charm
+				Tooltip:
+					'''
+					Increases weapon and projectile size
+					Reduces damage taken by 3%
+					'''
+			}
+
+			AshWoodCharm: {
+				DisplayName: Ash Wood Charm
+				Tooltip:
+					'''
+					Increases armor penetration by 3
+					Hits have a chance to cause a large fiery explosion
+					'''
+			}
 		}
 
 		NPCs: {
@@ -175,7 +217,10 @@ Mods: {
 			}
 		}
 
-		Projectiles.PumpkinPieceVisual.DisplayName: Pumpkin Piece Visual
+		Projectiles: {
+			PumpkinPieceVisual.DisplayName: Pumpkin Piece Visual
+			AshWoodExplosion.DisplayName: Ash Wood Explosion
+		}
 
 		Keybinds: {
 			"Cycle Charm Slots.DisplayName": Cycle  Charm  Slots

@@ -18,7 +18,7 @@ namespace Charisma.Content.Items.Charms.Timber.PreHardmode.Ecotone
             player.GetCritChance(DamageClass.Generic) += 3f;
             player.GetModPlayer<BorealCharmPlayer>().borealCharmEquipped = true;
 
-            player.moveSpeed += 0.05f;          
+            player.moveSpeed += 0.05f;
             player.fishingSkill += 5;
 
             player.GetModPlayer<CharismaPlayer>().luckBonusAccumulator += 0.07f;
@@ -40,8 +40,8 @@ namespace Charisma.Content.Items.Charms.Timber.PreHardmode.Ecotone
         {
             CreateRecipe()
                 .AddIngredient(ModContent.ItemType<WoodCharm>())
-                .AddIngredient(ModContent.ItemType<BorealCharm>())
                 .AddIngredient(ModContent.ItemType<PalmCharm>())
+                .AddIngredient(ModContent.ItemType<BorealCharm>())
                 .AddTile(TileID.TinkerersWorkbench)
                 .Register();
         }

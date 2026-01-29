@@ -11,7 +11,6 @@
 	  <Folder Include=".github\Workflows\" />
 	  <Folder Include="Assets\Textures\UI\" />
 	  <Folder Include="Content\Items\Charms\Timber\Hardmode\" />
-	  <Folder Include="Content\Items\Charms\Timber\PreHardmode\Rot\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <None Include=".github\workflows\release.yml" />
