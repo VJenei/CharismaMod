@@ -3,7 +3,7 @@ using System.IO;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
-using Terraria.ID; // Required for NetmodeID
+using Terraria.ID;
 
 namespace Charisma.Common.Systems
 {

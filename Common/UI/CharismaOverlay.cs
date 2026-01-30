@@ -7,8 +7,8 @@ using Charisma.Common.Systems;
 using Charisma.Common.Configs;
 using System.Collections.Generic;
 using System;
-using System.Reflection; // Required for saving
-using Terraria.ModLoader.Config; // Required for ConfigManager
+using System.Reflection;
+using Terraria.ModLoader.Config;
 
 namespace Charisma.Common.UI
 {
@@ -18,7 +18,7 @@ namespace Charisma.Common.UI
         private UIPanel area;
         private bool dragging = false;
         private Vector2 offset;
-        private int _lastCharisma = -1; // Optimization for GC
+        private int _lastCharisma = -1;
 
         public override void OnInitialize()
         {
@@ -63,11 +63,9 @@ namespace Charisma.Common.UI
 
             Recalculate();
 
-            // 1. Update the Config Object in RAM
             var config = ModContent.GetInstance<CharismaConfig>();
             config.OverlayPosition = new Vector2(newX, newY);
 
-            // 2. FORCE SAVE TO DISK
             typeof(ConfigManager)
                 .GetMethod("Save", BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic)
                 ?.Invoke(null, new object[] { config });
@@ -88,7 +86,6 @@ namespace Charisma.Common.UI
             }
             else
             {
-                // Sync if config changed externally (e.g. via Settings menu)
                 var config = ModContent.GetInstance<CharismaConfig>();
                 if (area.Left.Pixels != config.OverlayPosition.X || area.Top.Pixels != config.OverlayPosition.Y)
                 {
@@ -98,7 +95,6 @@ namespace Charisma.Common.UI
                 }
             }
 
-            // Optimization: Only update string if value changed (Garbage Collection Fix)
             int current = CharismaWorldSystem.WorldCharismaCount;
             if (charismaText != null && _lastCharisma != current)
             {
