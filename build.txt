@@ -1,3 +1,4 @@
 displayName = Charisma
 author = Vincent Jenei
-version = 0.2.10
+version = 0.2.11
+homepage = https://discord.gg/fpyBSJxcse

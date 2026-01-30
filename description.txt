@@ -1,16 +1,24 @@
-Current Build: Private Testing Phase
+Stop letting your materials go to waste. Charisma is a progression overhaul that turns the "useless" / archived items you ignore into power. From new abilities to a new stat, you will develop a natural lust to aquire Charisma.
 
-This is a work-in-progress build uploaded exclusively for the internal testing team. Features are currently incomplete, undocumented, and subject to frequent breaking changes.
+Charisma is a fully balanced mod created by the same person who created Elemental Hearts, designed for intuitive inclusion into every single modpack without changing pace, and heavily polished for both solo and multiplayer.
 
-Testing Notes:
+I got tired of early game materials becoming trash after 20 minutes. In this mod, every unique Charm you craft permanently increases your world's Charisma Stat. The higher your Charisma, the better your luck, movement speed, and shop prices become. It is an extra stat you actually want.
 
-Initial Charisma system implementation is live.
+The Core Loop:
+Collect & Craft: Scavenge biomes for unique materials to craft Charms like the Boreal Charm, Ash Wood Charm, and Cactus Charm. Every new discovery boosts your global Charisma stat.
 
-Timber-tier charms (Ecotone and Harvest sets) are available for balance feedback.
+Optimize: Combine your charms into powerful Totems at the Tinkerer's Workbench to save slots and stack effects.
 
-Town NPC interaction logic is still in flux.
+Key Features:
+The Charisma Stat: A permanent tracker that rewards you for being a completionist. It boosts your power based on how many unique items you've discovered.
 
-If you are not an authorized tester, please be aware that this mod is in an unstable state and lacks a formal player guide.
+The Salesman NPC: A new Town NPC who respects the grind. Once you start gaining Charisma, he moves in and sells you the base charms you've already found - perfect for multiplayer syncing so you don't have to grind duplicate materials.
+
+Cinematic Experience: Includes custom, polished graphical sequences and a clean UI overlay to track your stats in real-time.
+
+This mod has much more to offer and is still in the early stages. So much is planned for this mod and Charisma will have a bright future ahead of itself.
+
+Install my mod today and watch it evolve in real time!
 
 
 
