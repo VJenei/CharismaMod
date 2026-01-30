@@ -15,6 +15,53 @@ If you are not an authorized tester, please be aware that this mod is in an unst
 
 
 Changelog:
+0.3:
+
+
+SYSTEMS AND ARCHITECTURE
+
+Implemented `CharismaSplashSystem.cs` to trigger a cinematic intro sequence upon world load, featuring particle effects, screen shake, and animated "Charisma: Enabled" text.
+Introduced `CharismaSpawnGlobalNPC.cs` to manage a "Milestone" system that modifies spawn rates for specific NPCs (e.g., Demon Tax Collector, Bound Goblin, Mechanic, Wizard, Skeleton Merchant, Golfer, Stylist, Angler) based on `WorldCharismaCount` thresholds using base-3 and base-7 progression.
+Modified `CharismaWorldSystem.cs` to detour `Main.UpdateTime_SpawnTownNPCs`, forcing multiple spawn logic ticks per frame based on calculated charisma milestones to accelerate Town NPC arrival.
+Added `CharmCompatibilitySystem.cs` to automatically detect and map incompatible "Parent" and "Child" charms (e.g., preventing a player from equipping a Wood Charm while wearing a Timber Talisman) based on crafting recipes.
+Integrated `AutoPublish.ps1` and a GitHub workflow (`release.yml`) to handle automated versioning, tagging, and release generation.
+Added `.gitattributes` and `.gitignore` files to the project root for improved source control management.
+
+
+USER INTERFACE AND CONFIGURATION
+
+Updated `CharismaConfig.cs` with a new `EnableIntroSequence` boolean setting (defaulting to true) to allow users to disable the cinematic splash screen.
+Updated `Localization/en-US.hjson` with comprehensive entries for all new items (Rot set, Timber Talisman), buffs, configs, and tooltips.
+
+
+PLAYER MECHANICS
+
+Overhauled `CharismaPlayer.cs` logic for `PostUpdateMiscEffects` and `ModifyLuck` to iterate through active NPCs within a 2200f distance, scaling movement and luck bonuses based on proximity to up to 3 Town NPCs rather than a raw global check.
+Significantly reworked `PumpkinCharm.cs` (and `PumpkinCharmPlayer`) to utilize a `pumpkinCharges` and `pumpkinTimer` system with a 420-tick cooldown, limiting the frequency of bonus damage instead of it being purely random.
+Updated `BaseCharm.cs` to utilize the new `CharmCompatibilitySystem` via `CanEquipAccessory`, preventing the equipping of lower-tier charms when a composite charm is already present.
+
+
+ITEMS AND ACCESSORIES (NEW CONTENT)
+
+Implemented `TimberTalisman.cs`, a master-tier accessory combining Ecotone, Harvest, Verdant, and Rot totems, providing massive stat boosts (+4 defense, +7% crit, +10 HP), light, lava immunity, and special triggers.
+Added `AshWoodCharm.cs`: Increases armor penetration by 3, grants 180 ticks of Lava Immunity, and features a chance to trigger an `AshWoodExplosion` on hit with a cooldown.
+Added `EbonwoodCharm.cs`: Increases endurance by 3% and physically scales up the player's held item and projectiles by 22% via `EbonwoodCharmGlobalProjectile`.
+Added `ShadewoodCharm.cs`: Increases run acceleration and damage by 3%, and adds a Life Steal mechanic (healing based on defense) with a cooldown.
+Added `RotTotem.cs`: Combines the effects of the Ash Wood, Ebonwood, and Shadewood charms.
+
+
+VISUALS AND AUDIO
+
+Added `AshWoodExplosion` projectile (using Solar Whip explosion assets) for the Ash Wood Charm effect.
+Implemented `CharismaSplashSystem` visuals including a polished sunburst effect, "spark" and "glow" particles, and dynamic text formation.
+Integrated audio cues (`SoundID.MenuTick`, `SoundID.DD2_ExplosiveTrapExplode`) into the splash screen sequence.
+Added texture support for all new items: `EnchantedTimberTalisman.png`, `AshWoodCharm.png`, `EbonwoodCharm.png`, `ShadewoodCharm.png`, `RotTotem.png`, and `TimberTalisman.png`.
+
+
+OTHER
+
+Lots and lots of changes behind the scenes, like updating the mod to GitHub and creating an entire auto publish feature with Actions that compile the source code for easier accessibility.
+
 0.2:
 
 
