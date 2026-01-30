@@ -59,6 +59,11 @@ namespace Charisma.Content.Items.Charms.Timber.PreHardmode.Rot
             {
                 explosionCooldown--;
             }
+
+            if (ashWoodCharmEquipped)
+            {
+                Player.lavaMax += 180;
+            }
         }
 
         public override void OnHitNPCWithItem(Item item, NPC target, NPC.HitInfo hit, int damageDone)

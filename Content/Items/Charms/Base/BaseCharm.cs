@@ -27,6 +27,25 @@ namespace Charisma.Content.Items.Charms.Base
             Item.consumable = false;
         }
 
+        public override bool CanEquipAccessory(Player player, int slot, bool modded)
+        {
+            if (CharmCompatibilitySystem.IncompatibleItems.TryGetValue(Type, out HashSet<int> conflicts))
+            {
+                for (int i = 3; i < 8 + player.GetAmountOfExtraAccessorySlotsToShow(); i++)
+                {
+                    Item equippedItem = player.armor[i];
+
+                    if (!equippedItem.IsAir && conflicts.Contains(equippedItem.type))
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            return base.CanEquipAccessory(player, slot, modded);
+        }
+    
+
         public override bool? UseItem(Player player)
         {
             CharismaWorldSystem.TryUnlockCharm(Type, CharismaReward);

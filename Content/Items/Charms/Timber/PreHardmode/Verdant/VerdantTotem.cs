@@ -10,6 +10,11 @@ namespace Charisma.Content.Items.Charms.Timber.PreHardmode.Verdant
     public class VerdantTotem : BaseCharm
     {
         public override int CharismaReward => 7;
+        public override void SetDefaults()
+        {
+            base.SetDefaults();
+            Item.rare = ItemRarityID.Green;
+        }
 
         public override void ApplyCharmEffects(Player player)
         {
@@ -19,9 +24,10 @@ namespace Charisma.Content.Items.Charms.Timber.PreHardmode.Verdant
             player.statLifeMax2 += 10;
             player.blockRange += 1;
 
-            player.potionDelayTime = (int)(player.potionDelayTime * 0.9f);
-            player.restorationDelayTime = (int)(player.restorationDelayTime * 0.9f);
-            Lighting.AddLight(player.Center, 0, 0, 0.33f);
+            player.potionDelayTime = (int)(player.potionDelayTime * 0.89f);
+            player.restorationDelayTime = (int)(player.restorationDelayTime * 0.89f);
+
+            Lighting.AddLight(player.Center, 0, .22f, 0.33f);
 
             if (player.ZoneJungle)
             {

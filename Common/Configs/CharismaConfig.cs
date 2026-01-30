@@ -11,6 +11,9 @@ namespace Charisma.Common.Configs
         [Header("UserInterface")]
 
         [DefaultValue(true)]
+        public bool EnableIntroSequence;
+
+        [DefaultValue(true)]
         public bool ShowCharismaOverlay;
 
         [Range(0f, 4000f)]

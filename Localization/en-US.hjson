@@ -111,7 +111,7 @@ Mods: {
 				Tooltip:
 					'''
 					Reduces potion and restoration delay by 11%
-					Provides a small amount of light
+					Provides a small amount of blue light
 					'''
 			}
 
@@ -124,7 +124,7 @@ Mods: {
 					Increases maximum life by 10
 					Reduces potion delay
 					Hits have a chance to poison enemies
-					Provides a small amount of light
+					Provides a small amount of turquoise light
 					'''
 			}
 
@@ -149,6 +149,7 @@ Mods: {
 					Increases armor penetration by 3
 					Hits have a chance to steal life
 					Hits have a chance to cause a large fiery explosion
+					Provides 3 seconds of immunity to lava
 					'''
 			}
 
@@ -162,11 +163,36 @@ Mods: {
 			}
 
 			AshWoodCharm: {
-				DisplayName: Ash Wood Charm
+				DisplayName: Ash Charm
 				Tooltip:
 					'''
 					Increases armor penetration by 3
 					Hits have a chance to cause a large fiery explosion
+					Provides 3 seconds of immunity to lava
+					'''
+			}
+
+			TimberTalisman: {
+				DisplayName: Timber Talisman
+				Tooltip:
+					'''
+					4 defense
+					Increases armor penetration by 3
+					6% increased damage
+					6% increased critical strike chance
+					5% increased weapon speed
+					10% increased weapon and projectile size
+					5% increased movement speed
+					7% increased acceleration
+					Increases maximum life by 10
+					Reduces damage taken by 3%
+					Increases jump speed, hook velocity, and block placement range
+					Reduces potion delay and provides a small amount of light
+					Provides 3 seconds of immunity to lava
+					Increases fishing power by 5
+					Hits have a chance to inflict Frostburn, Poison, or cause a fiery explosion
+					Hits have a chance to steal life
+					Enemies that touch you receive Splinters and are pricked by lethal Cactus spines
 					'''
 			}
 		}
@@ -204,6 +230,11 @@ Mods: {
 			CharismaConfig: {
 				DisplayName: Charisma Settings
 				Headers.UserInterface: Interface Settings
+
+				EnableIntroSequence: {
+					Label: Enable Intro Sequence
+					Tooltip: If true, a cinematic splash screen will play when entering a world.
+				}
 
 				ShowCharismaOverlay: {
 					Label: Show Charisma Overlay

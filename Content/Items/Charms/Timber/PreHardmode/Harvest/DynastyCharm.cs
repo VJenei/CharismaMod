@@ -17,7 +17,7 @@ namespace Charisma.Content.Items.Charms.Timber.PreHardmode.Harvest
             player.GetCritChance(DamageClass.Generic) += 3f;
             player.GetAttackSpeed(DamageClass.Generic) += 0.05f;
 
-            player.GetModPlayer<CharismaPlayer>().luckBonusAccumulator += 0.005f;
+            player.GetModPlayer<CharismaPlayer>().luckBonusAccumulator += 0.015f;
         }
 
         public override void AddRecipes()

@@ -10,6 +10,12 @@ namespace Charisma.Content.Items.Charms.Timber.PreHardmode.Ecotone
     {
         public override int CharismaReward => 7;
 
+        public override void SetDefaults()
+        {
+            base.SetDefaults();
+            Item.rare = ItemRarityID.Green;
+        }
+
         public override void ApplyCharmEffects(Player player)
         {
             player.statDefense += 2;
